@@ -41,7 +41,7 @@ create-initial-cert-{{ setname }}-{{ domainlist | join('+') }}:
     - unless: /usr/local/bin/check_letsencrypt_cert.sh {{ domainlist|join(' ') }}
     - name: {{
           letsencrypt.cli_install_dir
-        }}/letsencrypt-auto certonly -d {{ domainlist|join(' -d ') }}
+        }}/letsencrypt-auto certonly -d {{ domainlist|join(' -d ') }} --non-interactive
     - cwd: {{ letsencrypt.cli_install_dir }}
     - require:
       - file: letsencrypt-config
